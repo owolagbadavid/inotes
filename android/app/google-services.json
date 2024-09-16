@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "782909183220",
+    "project_id": "init-s-notes",
+    "storage_bucket": "init-s-notes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782909183220:android:582fdc3add4111c4a2baa1",
+        "android_client_info": {
+          "package_name": "tech.oreosinit.inotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1i8T400-TOkgMa1dY3J-cN7qOhFojjhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
