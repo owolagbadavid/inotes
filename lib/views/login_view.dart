@@ -1,5 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
+// ignore: unused_import
+import 'dart:developer' as dev show log;
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:inotes/constants/routes.dart';
+import 'package:inotes/utils/show_dialog.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -59,26 +66,46 @@ class _LoginViewState extends State<LoginView> {
                 final email = _email.text;
                 final password = _password.text;
                 try {
-                  final userCredential = await FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: email, password: password);
+                  await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      email: email, password: password);
 
-                  print(userCredential);
+                  if (!context.mounted) return;
+                  //todo: refactor for async gap
+
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    notesRoute,
+                    (route) => false,
+                  );
                 } on FirebaseAuthException catch (e) {
-                  print(e.runtimeType);
-                  print(e.code);
                   if (e.code == 'user-not-found') {
-                    print('No user found for that email.');
+                    await showErrorDialog(
+                      context,
+                      'User Not Found',
+                    );
                   } else if (e.code == 'wrong-password') {
-                    print('Wrong password provided for that user.');
+                    await showErrorDialog(
+                      context,
+                      'Wrong password',
+                    );
+                  } else {
+                    await showErrorDialog(
+                      context,
+                      'Error: ${e.code}',
+                    );
                   }
+                } catch (e) {
+                  await showErrorDialog(
+                    context,
+                    'Error: ${e.toString()}',
+                  );
                 }
               },
               child: const Text("Login")),
           TextButton(
             onPressed: () => {
               Navigator.pushNamedAndRemoveUntil(
-                  context, '/register/', (route) => false),
+                  context, registerRoute, (route) => false),
             },
             child: const Text('Not registered yet? Register Here!'),
           )
