@@ -22,6 +22,7 @@ void main() async {
       loginRoute: (context) => const LoginView(),
       registerRoute: (context) => const RegisterView(),
       notesRoute: (context) => const NotesView(),
+      verifyEmailRoute: (context) => const VerfyEmailView(),
     },
   ));
 }
@@ -96,7 +97,7 @@ class _NotesViewState extends State<NotesView> {
                 if (shouldLogOut) {
                   await FirebaseAuth.instance.signOut();
 
-                  //todo: refactor for async gap
+                  //!: async gap
                   if (!context.mounted) return;
 
                   Navigator.of(context)
