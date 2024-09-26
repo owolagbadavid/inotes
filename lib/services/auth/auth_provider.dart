@@ -1,6 +1,8 @@
 part of 'auth_service.dart';
 
 abstract class AuthProvider {
+  Future<void> init();
+
   Future<AuthUser> login({
     required String email,
     required String password,

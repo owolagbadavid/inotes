@@ -2,6 +2,13 @@ part of 'auth_service.dart';
 
 class FirebaseAuthProvider implements AuthProvider {
   @override
+  Future<void> init() async {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
+  @override
   Future<AuthUser> createUser({
     required String email,
     required String password,
@@ -25,10 +32,10 @@ class FirebaseAuthProvider implements AuthProvider {
       } else if (e.code == 'invalid-email') {
         throw InvalidEmailAuthException();
       } else {
-        throw GenericAuthException(e.code);
+        throw GenericAuthException();
       }
     } catch (e) {
-      throw GenericAuthException(e.toString());
+      throw GenericAuthException();
     }
   }
 
@@ -62,10 +69,10 @@ class FirebaseAuthProvider implements AuthProvider {
       } else if (e.code == 'invalid-email') {
         throw InvalidEmailAuthException();
       } else {
-        throw GenericAuthException(e.code);
+        throw GenericAuthException();
       }
     } catch (e) {
-      throw GenericAuthException(e.toString());
+      throw GenericAuthException();
     }
   }
 

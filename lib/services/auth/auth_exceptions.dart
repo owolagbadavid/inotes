@@ -24,11 +24,7 @@ class InvalidEmailAuthException implements Exception {
 
 // generic exception
 
-class GenericAuthException implements Exception {
-  final String message;
-
-  GenericAuthException(this.message);
-}
+class GenericAuthException implements Exception {}
 
 class UserNotLoggedInAuthException implements Exception {
   final String message = 'User Not Logged In';
