@@ -5,25 +5,37 @@ import 'package:inotes/views/verify_email_view.dart';
 import 'package:inotes/constants/routes.dart';
 import 'package:inotes/views/notes_view.dart';
 import 'package:inotes/services/auth/auth_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 // import 'dart:developer' as dev show log;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(MaterialApp(
-    title: 'Flutter Demo',
-    theme: ThemeData(
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      useMaterial3: true,
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              AuthenticationBloc(), // Inject your AuthenticationBloc here
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const HomePage(),
+        routes: {
+          loginRoute: (context) => const LoginView(),
+          registerRoute: (context) => const RegisterView(),
+          notesRoute: (context) => const NotesView(),
+          verifyEmailRoute: (context) => const VerfyEmailView(),
+        },
+      ),
     ),
-    home: const HomePage(),
-    routes: {
-      loginRoute: (context) => const LoginView(),
-      registerRoute: (context) => const RegisterView(),
-      notesRoute: (context) => const NotesView(),
-      verifyEmailRoute: (context) => const VerfyEmailView(),
-    },
-  ));
+  );
 }
 
 class HomePage extends StatelessWidget {
