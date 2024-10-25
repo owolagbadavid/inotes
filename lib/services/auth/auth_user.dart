@@ -4,9 +4,9 @@ part of 'auth_service.dart';
 class AuthUser {
   final bool isEmailVerified;
 
-  const AuthUser(this.isEmailVerified);
+  const AuthUser({required this.isEmailVerified});
 
   factory AuthUser.fromFirebaseUser(User user) {
-    return AuthUser(user.emailVerified);
+    return AuthUser(isEmailVerified: user.emailVerified);
   }
 }
