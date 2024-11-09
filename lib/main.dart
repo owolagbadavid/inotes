@@ -3,9 +3,10 @@ import 'package:inotes/views/login_view.dart';
 import 'package:inotes/views/register_view.dart';
 import 'package:inotes/views/verify_email_view.dart';
 import 'package:inotes/constants/routes.dart';
-import 'package:inotes/views/notes_view.dart';
+import 'package:inotes/views/notes/notes_view.dart';
 import 'package:inotes/services/auth/auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inotes/views/notes/new_note_view.dart';
 
 // import 'dart:developer' as dev show log;
 
@@ -32,6 +33,7 @@ void main() async {
           registerRoute: (context) => const RegisterView(),
           notesRoute: (context) => const NotesView(),
           verifyEmailRoute: (context) => const VerfyEmailView(),
+          newNoteRoute: (context) => const NewNoteView(),
         },
       ),
     ),

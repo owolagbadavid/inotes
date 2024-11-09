@@ -259,6 +259,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  flutter_slidable:
+    dependency: "direct main"
+    description:
+      name: flutter_slidable
+      sha256: "2c5611c0b44e20d180e4342318e1bbc28b0a44ad2c442f5df16962606fd3e8e3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.1"
+  flutter_slidable_plus:
+    dependency: "direct main"
+    description:
+      name: flutter_slidable_plus
+      sha256: "6221c0cb36ad3b3b2ec458818e9373774e20500ed896ae82ce116bf56f3410ad"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
