@@ -10,5 +10,8 @@ Future<bool> showDeleteDialog(BuildContext context) async {
       'Cancel': false,
       'Delete': true,
     },
+    optionColorBuilder: () => {
+      'Delete': Colors.red,
+    },
   ).then((value) => value ?? false);
 }

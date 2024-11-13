@@ -4,11 +4,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:inotes/services/crud/notes_service.dart';
 import 'package:inotes/utils/dialogs/delete_dialog.dart';
 
-typedef DeleteNoteCallback = void Function(DataBaseNote note);
+typedef NoteCallback = void Function(DataBaseNote note);
 
 class NotesListView extends StatefulWidget {
   final List<DataBaseNote> notes;
-  final DeleteNoteCallback onDelete;
+  final NoteCallback onDelete;
+  final NoteCallback onTap;
   final List<SlidableController> controllers;
 
   const NotesListView({
@@ -16,6 +17,7 @@ class NotesListView extends StatefulWidget {
     required this.notes,
     required this.onDelete,
     required this.controllers,
+    required this.onTap,
   });
 
   @override
@@ -147,6 +149,9 @@ class _NotesListViewState extends State<NotesListView> {
                   ],
                 ),
                 child: CupertinoListTile(
+                  onTap: () {
+                    widget.onTap(note);
+                  },
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
                       vertical: 10), // Adjust these values as needed

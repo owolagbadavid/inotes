@@ -63,7 +63,7 @@ class _NotesViewState extends State<NotesView> with TickerProviderStateMixin {
         appBar: AppBar(title: const Text("My Notes"), actions: <Widget>[
           IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(newNoteRoute);
+                Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
               },
               icon: const Icon(Icons.add)),
           PopupMenuButton<MenuAction>(
@@ -112,6 +112,12 @@ class _NotesViewState extends State<NotesView> with TickerProviderStateMixin {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                           content: Text('Note deleted')),
+                                    );
+                                  },
+                                  onTap: (note) {
+                                    Navigator.of(context).pushNamed(
+                                      createOrUpdateNoteRoute,
+                                      arguments: note,
                                     );
                                   },
                                   controllers: _controllers);
