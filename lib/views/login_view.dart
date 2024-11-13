@@ -4,7 +4,7 @@ import 'dart:developer' as dev show log;
 import 'package:flutter/material.dart';
 import 'package:inotes/constants/routes.dart';
 import 'package:inotes/services/auth/auth_service.dart';
-import 'package:inotes/utils/show_dialog.dart';
+import 'package:inotes/utils/dialogs/error_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginView extends StatefulWidget {
