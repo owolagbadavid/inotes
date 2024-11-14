@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inotes/styles/styles.dart';
 import 'package:inotes/views/login_view.dart';
 import 'package:inotes/views/register_view.dart';
 import 'package:inotes/views/verify_email_view.dart';
@@ -23,10 +24,9 @@ void main() async {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: ThemeMode.system, //
         home: const HomePage(),
         routes: {
           loginRoute: (context) => const LoginView(),
@@ -77,3 +77,39 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+// class AdaptiveApp extends StatelessWidget {
+//   const AdaptiveApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     if (Platform.isIOS) {
+//       return CupertinoApp(
+//         title: 'Notes',
+//         home: const HomePage(),
+//         routes: {
+//           loginRoute: (context) => const LoginView(),
+//           registerRoute: (context) => const RegisterView(),
+//           notesRoute: (context) => const NotesView(),
+//           verifyEmailRoute: (context) => const VerfyEmailView(),
+//           createOrUpdateNoteRoute: (context) => const CreateUpdateNoteView(),
+//         },
+//         theme: cupertionThemeBuilder(context),
+//       );
+//     }
+//     return MaterialApp(
+//       title: 'Notes',
+//       theme: lightTheme,
+//       darkTheme: darkTheme,
+//       themeMode: ThemeMode.system, //
+//       home: const HomePage(),
+//       routes: {
+//         loginRoute: (context) => const LoginView(),
+//         registerRoute: (context) => const RegisterView(),
+//         notesRoute: (context) => const NotesView(),
+//         verifyEmailRoute: (context) => const VerfyEmailView(),
+//         createOrUpdateNoteRoute: (context) => const CreateUpdateNoteView(),
+//       },
+//     );
+//   }
+// }

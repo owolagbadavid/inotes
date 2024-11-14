@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -69,8 +71,9 @@ class _NotesListViewState extends State<NotesListView> {
       child: ListView(children: [
         Card(
           margin: const EdgeInsets.all(8.0), // Space around the card
-          color:
-              const Color.fromARGB(255, 195, 193, 193), // Light grey background
+          // color:
+          //     const Color.fromARGB(255, 195, 193, 193),
+          color: Theme.of(context).cardColor, // Light grey background
           // shape: RoundedRectangleBorder(
           //   borderRadius: BorderRadius.circular(
           //       12.0), // Rounded corners
@@ -130,6 +133,7 @@ class _NotesListViewState extends State<NotesListView> {
                           await controller.dismiss(ResizeRequest(
                               const Duration(milliseconds: 150), () {
                             widget.onDelete(note);
+                            widget.controllers.remove(controller);
 
                             // setState(() {
                             _activeController = null;
@@ -141,9 +145,11 @@ class _NotesListViewState extends State<NotesListView> {
                         }
                       }, // Dismisses the Slidable.
 
-                      backgroundColor: const Color(0xFFFE4A49),
-                      foregroundColor: Colors.white,
-                      icon: Icons.delete,
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                      foregroundColor: Theme.of(context).colorScheme.onError,
+                      icon: Platform.isIOS
+                          ? CupertinoIcons.delete_solid
+                          : Icons.delete,
                       label: 'Delete',
                     ),
                   ],
@@ -160,22 +166,27 @@ class _NotesListViewState extends State<NotesListView> {
                       maxLines: 1,
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
                       )),
                   subtitle: Text(
-                      (i = note.text.indexOf('\n')) == -1
-                          ? 'No additional text'
-                          : note.text.substring(i + 1),
-                      maxLines: 1),
+                    (i = note.text.indexOf(RegExp(r'\n(\S)'))) == -1
+                        ? 'No additional text'
+                        : note.text.substring(i + 1),
+                    maxLines: 1,
+                    style: TextStyle(
+                        color: Theme.of(context).textTheme.bodySmall?.color),
+                  ),
                 ),
               );
             },
             separatorBuilder: (context, index) {
-              return const Divider(
+              return Divider(
                 indent: 15,
                 height: 1,
-                color: Colors.grey, // Customize the color
+                // color: Colors.grey,
+                color: Theme.of(context).dividerColor, // Customize the color
                 thickness: 1.0, // Customize the thickness
               );
             },

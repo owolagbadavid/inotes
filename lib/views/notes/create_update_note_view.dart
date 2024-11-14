@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inotes/services/auth/auth_service.dart';
 import 'package:inotes/services/crud/notes_service.dart';
@@ -16,9 +17,10 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   late final TextEditingController _textController;
   var _isSaving = false;
   TextEditingValue _previousValue = TextEditingValue.empty;
+  late final DataBaseNote? widgetNote;
 
   Future<DataBaseNote> createOrGetNote(BuildContext context) async {
-    final widgetNote = context.getArgument<DataBaseNote>();
+    widgetNote = context.getArgument<DataBaseNote>();
 
     if (widgetNote != null) {
       _note = widgetNote;
@@ -33,7 +35,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
       final email = currentUser.email!;
       final owner = await _notesService.getOrCreateUser(email: email);
 
-      final newNote = await _notesService.createNote(owner: owner);
+      final newNote = await _notesService.createNote(owner: owner, push: false);
       _note = newNote;
       return newNote;
     }
@@ -116,10 +118,11 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
               return Container(
                 padding: const EdgeInsets.only(left: 16, right: 16),
                 child: TextField(
+                  autofocus: widgetNote == null,
                   controller: _textController,
                   decoration: const InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Enter your note here',
+                    // hintText: 'Enter your note here',
                   ),
                   maxLines: null,
                   keyboardType: TextInputType.multiline,

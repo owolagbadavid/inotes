@@ -135,6 +135,7 @@ class NotesService {
   Future<DataBaseNote> createNote({
     required DataBaseUser owner,
     String text = '',
+    bool push = true,
   }) async {
     await _ensureDBOpen();
 
@@ -158,8 +159,10 @@ class NotesService {
     final note =
         DataBaseNote(id: id, text: text, userId: owner.id, isSynced: false);
 
-    _notes.add(note);
-    _notesStreamController.add(_notes);
+    if (push) {
+      _notes.add(note);
+      _notesStreamController.add(_notes);
+    }
 
     return note;
   }

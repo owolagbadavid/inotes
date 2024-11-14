@@ -104,14 +104,9 @@ class _NotesViewState extends State<NotesView> with TickerProviderStateMixin {
                               }
                               return NotesListView(
                                   notes: notes,
-                                  onDelete: (note) {
-                                    _notesService.deleteNote(
+                                  onDelete: (note) async {
+                                    await _notesService.deleteNote(
                                       id: note.id,
-                                    );
-
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          content: Text('Note deleted')),
                                     );
                                   },
                                   onTap: (note) {

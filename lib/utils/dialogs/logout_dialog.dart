@@ -10,5 +10,8 @@ Future<bool> showLogOutDialog(BuildContext context) async {
       'Cancel': false,
       'Log out': true,
     },
+    optionColorBuilder: () => {
+      'Log out': Colors.red,
+    },
   ).then((value) => value ?? false);
 }
