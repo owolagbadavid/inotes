@@ -126,10 +126,18 @@ class AuthenticationBloc
     });
 
     on<SendEmailVerification>((event, emit) async {
-      emit(AuthenticationLoadingState(isLoading: true));
-      await AuthService.firebase().sendEmailVerification();
-      emit(AuthenticationSuccessState(AuthService.firebase().currentUser));
-      emit(AuthenticationLoadingState(isLoading: false));
+      try {
+        emit(AuthenticationLoadingState(isLoading: true));
+        await AuthService.firebase().sendEmailVerification();
+
+        emit(AuthenticationSuccessState(AuthService.firebase().currentUser));
+      } on TooManyRequestsAuthException {
+        emit(const AuthenticationFailureState('Too Many Requests'));
+      } on GenericAuthException {
+        emit(const AuthenticationFailureState('An Error Occurred'));
+      } finally {
+        emit(AuthenticationLoadingState(isLoading: false));
+      }
     });
   }
 }

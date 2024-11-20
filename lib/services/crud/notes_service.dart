@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:inotes/extensions/list/filter.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
@@ -18,11 +19,20 @@ class NotesService {
 
   Database? _db;
 
+  DataBaseUser? _user;
+
   final List<DataBaseNote> _notes = [];
 
   late final StreamController<List<DataBaseNote>> _notesStreamController;
 
-  Stream<List<DataBaseNote>> get allNotes => _notesStreamController.stream;
+  Stream<List<DataBaseNote>> get allNotes =>
+      _notesStreamController.stream.filter((note) {
+        final currentUser = _user;
+        if (currentUser == null) {
+          throw UserNotSetException();
+        }
+        return note.userId == currentUser.id;
+      });
 
   Future<void> _cacheNotes() async {
     final notes = await getNotes();
@@ -68,11 +78,22 @@ class NotesService {
     return _db!;
   }
 
-  Future<DataBaseUser> getOrCreateUser({required String email}) async {
+  Future<DataBaseUser> getOrCreateUser({
+    required String email,
+    bool setAsCurrentUser = true,
+  }) async {
     try {
-      return await getUser(email: email);
+      final user = await getUser(email: email);
+      if (setAsCurrentUser) {
+        _user = user;
+      }
+      return user;
     } on UserNotFoundException {
-      return await createUser(email: email);
+      final user = await createUser(email: email);
+      if (setAsCurrentUser) {
+        _user = user;
+      }
+      return user;
     } catch (e) {
       rethrow;
     }

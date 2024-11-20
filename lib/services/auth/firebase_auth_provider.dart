@@ -90,7 +90,17 @@ class FirebaseAuthProvider implements AuthProvider {
   Future<void> sendEmailVerification() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      await user.sendEmailVerification();
+      try {
+        await user.sendEmailVerification();
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'too-many-requests') {
+          throw TooManyRequestsAuthException();
+        } else {
+          throw GenericAuthException();
+        }
+      } catch (e) {
+        throw GenericAuthException();
+      }
     } else {
       throw UserNotLoggedInAuthException();
     }

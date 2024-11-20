@@ -18,6 +18,10 @@ class WeakPasswordAuthException implements Exception {
   final String message = 'Weak Password';
 }
 
+class TooManyRequestsAuthException implements Exception {
+  final String message = 'Too Many Requests';
+}
+
 class InvalidEmailAuthException implements Exception {
   final String message = 'Invalid Email';
 }
