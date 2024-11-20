@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 final lightTheme = ThemeData(
@@ -37,57 +36,3 @@ final darkTheme = ThemeData(
   useMaterial3: true,
   // Customize more properties for dark mode as needed
 );
-
-// CupertinoThemeData cupertionThemeBuilder(context) {
-//   return CupertinoThemeData(
-//     brightness: MediaQuery.platformBrightnessOf(context),
-//     primaryColor: MediaQuery.platformBrightnessOf(context) == Brightness.dark
-//         ? Colors.teal
-//         : Colors.blue,
-//     scaffoldBackgroundColor:
-//         MediaQuery.platformBrightnessOf(context) == Brightness.dark
-//             ? const Color(0xFF333333)
-//             : const Color.fromARGB(255, 195, 193, 193),
-//     barBackgroundColor:
-//         MediaQuery.platformBrightnessOf(context) == Brightness.dark
-//             ? const Color(0xFF1E1E1E)
-//             : Colors.white,
-//     textTheme: CupertinoTextThemeData(
-//       primaryColor: MediaQuery.platformBrightnessOf(context) == Brightness.dark
-//           ? Colors.teal
-//           : Colors.blue,
-//       textStyle: TextStyle(
-//         color: MediaQuery.platformBrightnessOf(context) == Brightness.dark
-//             ? Colors.white
-//             : Colors.black,
-//       ),
-//       navTitleTextStyle: TextStyle(
-//         color: MediaQuery.platformBrightnessOf(context) == Brightness.dark
-//             ? Colors.white
-//             : Colors.black,
-//         fontSize: 17,
-//       ),
-//       navLargeTitleTextStyle: TextStyle(
-//         color: MediaQuery.platformBrightnessOf(context) == Brightness.dark
-//             ? Colors.white
-//             : Colors.black,
-//         fontSize: 34,
-//       ),
-//       tabLabelTextStyle: TextStyle(
-//         color: MediaQuery.platformBrightnessOf(context) == Brightness.dark
-//             ? Colors.white
-//             : Colors.black,
-//         fontSize: 10,
-//       ),
-//       actionTextStyle: TextStyle(
-//         color: MediaQuery.platformBrightnessOf(context) == Brightness.dark
-//             ? Colors.tealAccent
-//             : Colors.blueAccent,
-//       ),
-//     ),
-//     primaryContrastingColor:
-//         MediaQuery.platformBrightnessOf(context) == Brightness.dark
-//             ? Colors.tealAccent
-//             : Colors.blueAccent,
-//   );
-// }

@@ -3,13 +3,14 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:inotes/services/crud/notes_service.dart';
+import 'package:inotes/services/cloud/cloud_note.dart';
+
 import 'package:inotes/utils/dialogs/delete_dialog.dart';
 
-typedef NoteCallback = void Function(DataBaseNote note);
+typedef NoteCallback = void Function(CloudNote note);
 
 class NotesListView extends StatefulWidget {
-  final List<DataBaseNote> notes;
+  final Iterable<CloudNote> notes;
   final NoteCallback onDelete;
   final NoteCallback onTap;
   final List<SlidableController> controllers;
@@ -56,6 +57,13 @@ class _NotesListViewState extends State<NotesListView> {
       (index) => GlobalKey(),
     );
 
+    bool isIos = false;
+    try {
+      isIos = Platform.isIOS;
+    } catch (_) {
+      // ignore
+    }
+
     return GestureDetector(
       onVerticalDragDown: (details) {
         final Offset localPosition = details.globalPosition;
@@ -85,7 +93,7 @@ class _NotesListViewState extends State<NotesListView> {
             itemCount: widget.notes.length,
             itemBuilder: (context, index) {
               int i;
-              final note = widget.notes[index];
+              final note = widget.notes.elementAt(index);
               final controller = widget.controllers[index];
               controller.actionPaneType.addListener(
                 () {
@@ -147,9 +155,7 @@ class _NotesListViewState extends State<NotesListView> {
 
                       backgroundColor: Theme.of(context).colorScheme.error,
                       foregroundColor: Theme.of(context).colorScheme.onError,
-                      icon: Platform.isIOS
-                          ? CupertinoIcons.delete_solid
-                          : Icons.delete,
+                      icon: isIos ? CupertinoIcons.delete_solid : Icons.delete,
                       label: 'Delete',
                     ),
                   ],
