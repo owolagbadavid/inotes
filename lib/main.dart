@@ -15,27 +15,27 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              AuthenticationBloc(), // Inject your AuthenticationBloc here
-        ),
-      ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: lightTheme,
-        darkTheme: darkTheme,
-        themeMode: ThemeMode.system, //
-        home: const HomePage(),
-        routes: {
-          loginRoute: (context) => const LoginView(),
-          registerRoute: (context) => const RegisterView(),
-          notesRoute: (context) => const NotesView(),
-          verifyEmailRoute: (context) => const VerfyEmailView(),
-          createOrUpdateNoteRoute: (context) => const CreateUpdateNoteView(),
-        },
+    MaterialApp(
+      title: 'Flutter Demo',
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.system, //
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AuthenticationBloc(
+                FirebaseAuthProvider()), // Inject your AuthenticationBloc here
+          ),
+        ],
+        child: const HomePage(),
       ),
+      routes: {
+        loginRoute: (context) => const LoginView(),
+        registerRoute: (context) => const RegisterView(),
+        notesRoute: (context) => const NotesView(),
+        verifyEmailRoute: (context) => const VerfyEmailView(),
+        createOrUpdateNoteRoute: (context) => const CreateUpdateNoteView(),
+      },
     ),
   );
 }
@@ -45,36 +45,24 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: () async {
-        await AuthService.firebase().init();
+    context.read<AuthenticationBloc>().add(AuthEventInitialize());
 
-        // await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-      }(),
-      builder: (context, snapShot) {
-        switch (snapShot.connectionState) {
-          case ConnectionState.waiting:
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          case ConnectionState.done:
-            final user = AuthService.firebase().currentUser;
-
-            if (user == null) {
-              return const LoginView();
-            } else if (user.isEmailVerified) {
-              return const NotesView();
-            } else {
-              return const VerfyEmailView();
-            }
-
-          default:
-            return const Center(
-              child: Text("Error"),
-            );
-        }
-      },
-    );
+    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+      if (state is AuthLoggedOutState) {
+        return const LoginView();
+      } else if (state is AuthenticationSuccessState) {
+        return const NotesView();
+      } else if (state is AuthenticationNeedsVerificationState) {
+        return const VerfyEmailView();
+      } else {
+        return const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      }
+    });
   }
 }
 

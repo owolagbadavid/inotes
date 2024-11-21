@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inotes/constants/routes.dart';
+// import 'package:inotes/constants/routes.dart';
 import 'package:inotes/services/auth/auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inotes/utils/dialogs/error_dialog.dart';
@@ -32,12 +32,6 @@ class _VerfyEmailViewState extends State<VerfyEmailView> {
           if (_isDialogOpen) {
             Navigator.of(context).pop(); // Close the loading dialog
             _isDialogOpen = false;
-          }
-          if (state.user == null) {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-              loginRoute,
-              (_) => false,
-            );
           }
         } else if (state is AuthenticationLoadingState) {
           if (state.isLoading && !_isDialogOpen) {

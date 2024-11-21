@@ -1,10 +1,15 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inotes/services/auth/auth_service.dart';
+import 'package:inotes/utils/dialogs/cannot_share_empty_note_dialog.dart';
 
 import 'package:inotes/utils/generics/get_arguments.dart';
 import 'package:inotes/services/cloud/cloud_note.dart';
 
 import 'package:inotes/services/cloud/firebase_cloud_storage.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CreateUpdateNoteView extends StatefulWidget {
   const CreateUpdateNoteView({super.key});
@@ -104,9 +109,30 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
 
   @override
   Widget build(BuildContext context) {
+    bool isIos = false;
+    try {
+      isIos = Platform.isIOS;
+    } catch (_) {
+      // do nothing
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('New Note'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final text = _textController.text;
+
+              if (_note == null || text.isEmpty) {
+                await showCannotShareEmptyNoteDialog(context);
+              }
+
+              Share.share(text);
+            },
+            icon: Icon(isIos ? CupertinoIcons.share : Icons.share),
+          )
+        ],
       ),
       body: FutureBuilder<CloudNote>(
         future: createOrGetNote(context),

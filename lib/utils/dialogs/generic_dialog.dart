@@ -83,7 +83,7 @@ Future<T?> showIos<T>({
             child: Text(
               optionTitle,
               style: TextStyle(
-                color: optionColors[optionTitle] ?? CupertinoColors.activeBlue,
+                color: optionColors[optionTitle],
               ),
             ),
           );
@@ -126,7 +126,7 @@ Future<T?> showDefault<T>({
             child: Text(
               optionTitle,
               style: TextStyle(
-                color: optionColors[optionTitle] ?? CupertinoColors.activeBlue,
+                color: optionColors[optionTitle],
               ),
             ),
           );

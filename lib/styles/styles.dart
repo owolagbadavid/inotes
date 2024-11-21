@@ -5,8 +5,8 @@ final lightTheme = ThemeData(
   primarySwatch: Colors.blue,
   cardColor: const Color.fromARGB(255, 195, 193, 193), // Light grey background
   colorScheme: const ColorScheme.light(
-    primary: Colors.blue,
-    secondary: Colors.blueAccent,
+    primary: Color.fromRGBO(51, 181, 103, 1),
+    secondary: Colors.tealAccent,
     error: Color(0xFFFE4A49), // Custom error color
     onError: Colors.white,
   ),
@@ -23,7 +23,7 @@ final darkTheme = ThemeData(
   primarySwatch: Colors.blue,
   cardColor: const Color(0xFF333333), // Dark background for cards
   colorScheme: const ColorScheme.dark(
-    primary: Colors.teal,
+    primary: Color.fromRGBO(51, 181, 103, 1),
     secondary: Colors.tealAccent,
     error: Color(0xFFFF6961), // Custom error color for dark mode
     onError: Colors.black, // Text/icon color for error states in dark mode

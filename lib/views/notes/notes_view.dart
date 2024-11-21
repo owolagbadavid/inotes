@@ -38,27 +38,15 @@ class _NotesViewState extends State<NotesView> with TickerProviderStateMixin {
       listener: (context, state) async {
         if (state is AuthenticationFailureState) {
           showErrorDialog(context, state.errorMessage);
-        } else if (state is LogoutConfirmationState) {
-          final shouldLogOut = await showLogOutDialog(context);
-
-          if (shouldLogOut) {
-            if (context.mounted) {
-              BlocProvider.of<AuthenticationBloc>(context).add(SignOut());
-            }
-          }
-        } else if (state is AuthenticationSuccessState) {
-          if (state.user == null) {
-            Navigator.of(context)
-                .pushNamedAndRemoveUntil(loginRoute, (_) => false);
-          }
-        } else if (state is AuthenticationLoadingState && state.isLoading) {
-          showDialog(
-            context: context,
-            builder: (context) => const Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
         }
+        // else if (state is AuthenticationLoadingState && state.isLoading) {
+        //   showDialog(
+        //     context: context,
+        //     builder: (context) => const Center(
+        //       child: CircularProgressIndicator(),
+        //     ),
+        //   );
+        // }
       },
       child: Scaffold(
         appBar: AppBar(title: const Text("My Notes"), actions: <Widget>[
@@ -78,10 +66,13 @@ class _NotesViewState extends State<NotesView> with TickerProviderStateMixin {
             onSelected: (value) async {
               switch (value) {
                 case MenuAction.logout:
-                  BlocProvider.of<AuthenticationBloc>(context).add(
-                    ConfirmLogoutRequested(),
-                  );
-                  return;
+                  final shouldLogOut = await showLogOutDialog(context);
+
+                  if (shouldLogOut && context.mounted) {
+                    BlocProvider.of<AuthenticationBloc>(context).add(
+                      SignOut(),
+                    );
+                  }
               }
             },
           ),

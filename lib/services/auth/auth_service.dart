@@ -12,6 +12,8 @@ part 'auth_provider.dart';
 part 'auth_user.dart';
 part 'firebase_auth_provider.dart';
 part 'auth_bloc.dart';
+part 'auth_state.dart';
+part 'auth_event.dart';
 
 class AuthService implements AuthProvider {
   final AuthProvider provider;
