@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inotes/helpers/loading/loading_screen.dart';
 import 'package:inotes/styles/styles.dart';
 import 'package:inotes/views/login_view.dart';
 import 'package:inotes/views/register_view.dart';
@@ -47,14 +48,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<AuthenticationBloc>().add(AuthEventInitialize());
 
-    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) {
+    return BlocConsumer<AuthenticationBloc, AuthenticationState>(
+        listener: (context, state) {
+      if (state.isLoading) {
+        LoadingScreen().show(context: context, text: state.loadingText);
+      } else {
+        LoadingScreen().hide();
+      }
+    }, builder: (context, state) {
       if (state is AuthLoggedOutState) {
         return const LoginView();
       } else if (state is AuthenticationSuccessState) {
         return const NotesView();
       } else if (state is AuthenticationNeedsVerificationState) {
         return const VerfyEmailView();
+      } else if (state is AuthStateRegistering) {
+        return const RegisterView();
       } else {
         return const Scaffold(
           body: Center(

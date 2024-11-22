@@ -36,9 +36,6 @@ class _NotesViewState extends State<NotesView> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) async {
-        if (state is AuthenticationFailureState) {
-          showErrorDialog(context, state.errorMessage);
-        }
         // else if (state is AuthenticationLoadingState && state.isLoading) {
         //   showDialog(
         //     context: context,

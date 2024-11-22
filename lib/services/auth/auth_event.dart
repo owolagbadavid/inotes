@@ -30,6 +30,6 @@ class LoginUser extends AuthenticationEvent {
 
 class SignOut extends AuthenticationEvent {}
 
-class ConfirmLogoutRequested extends AuthenticationEvent {}
+class AuthEventShouldRegister extends AuthenticationEvent {}
 
 class AuthEventInitialize extends AuthenticationEvent {}

@@ -3,7 +3,7 @@ part of 'auth_service.dart';
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc(AuthProvider provider)
-      : super(AuthenticationInitialState()) {
+      : super(const AuthenticationInitialState(isLoading: true)) {
     on<AuthenticationEvent>((event, emit) {});
 
     on<AuthEventInitialize>((event, emit) async {
@@ -12,85 +12,67 @@ class AuthenticationBloc
       final user = provider.currentUser;
 
       if (user == null) {
-        emit(AuthLoggedOutState());
+        emit(const AuthLoggedOutState(isLoading: false));
       } else if (user.isEmailVerified) {
-        emit(AuthenticationSuccessState(user));
+        emit(AuthenticationSuccessState(user, isLoading: false));
       } else {
-        emit(const AuthenticationNeedsVerificationState());
+        emit(const AuthenticationNeedsVerificationState(isLoading: false));
       }
     });
 
     on<SignUpUser>((event, emit) async {
-      emit(AuthenticationLoadingState(isLoading: true));
       try {
-        final user = await provider.createUser(
+        await provider.createUser(
+          email: event.email,
+          password: event.password,
+        );
+        await provider.sendEmailVerification();
+
+        emit(const AuthenticationNeedsVerificationState(isLoading: false));
+      } on Exception catch (e) {
+        emit(AuthStateRegistering(exception: e, isLoading: false));
+      }
+    });
+
+    on<LoginUser>((event, emit) async {
+      emit(const AuthLoggedOutState(
+        isLoading: true,
+        loadingText: 'Logging in',
+      ));
+      try {
+        final user = await provider.login(
           email: event.email,
           password: event.password,
         );
 
         if (user.isEmailVerified == false) {
-          emit(const AuthenticationNeedsVerificationState());
+          emit(const AuthLoggedOutState(isLoading: false));
+          emit(const AuthenticationNeedsVerificationState(isLoading: false));
         } else {
-          emit(AuthenticationSuccessState(user));
+          emit(const AuthLoggedOutState(isLoading: false));
+          emit(AuthenticationSuccessState(user, isLoading: false));
         }
-      } on WeakPasswordAuthException {
-        emit(const AuthenticationFailureState('Weak Password'));
-      } on InvalidEmailAuthException {
-        emit(const AuthenticationFailureState('Invalid Email'));
-      } on GenericAuthException {
-        emit(const AuthenticationFailureState('An Error Occurred'));
-      } on EmailAlreadyInUseAuthException {
-        emit(const AuthenticationFailureState('Email Already In Use'));
-      }
-      // emit(AuthenticationLoadingState(isLoading: false));
-    });
-
-    on<LoginUser>((event, emit) async {
-      emit(AuthenticationLoadingState(isLoading: true));
-      try {
-        final user =
-            await provider.login(email: event.email, password: event.password);
-
-        if (user.isEmailVerified == false) {
-          emit(const AuthenticationNeedsVerificationState());
-        } else {
-          emit(AuthenticationSuccessState(user));
-        }
-      } on WrongPasswordAuthException {
-        emit(const AuthenticationFailureState('Wrong Password'));
-      } on UserNotFoundAuthException {
-        emit(const AuthenticationFailureState('User Not Found'));
-      } on InvalidEmailAuthException {
-        emit(const AuthenticationFailureState('Invalid Email'));
-      } on GenericAuthException {
-        emit(const AuthenticationFailureState('An Error Occurred'));
+      } on Exception catch (e) {
+        emit(AuthLoggedOutState(exception: e, isLoading: false));
       }
     });
 
     on<SignOut>((event, emit) async {
-      emit(AuthenticationLoadingState(isLoading: true));
+      // emit(AuthenticationLoadingState(isLoading: true));
       try {
         await provider.logout();
-        emit(AuthLoggedOutState());
-      } on UserNotLoggedInAuthException {
-        emit(const AuthenticationFailureState('User Not Logged In'));
-      } on GenericAuthException {
-        emit(const AuthenticationFailureState('An Error Occurred'));
+        emit(const AuthLoggedOutState(isLoading: false));
+      } on Exception catch (e) {
+        emit(AuthLoggedOutState(
+          exception: e,
+          isLoading: false,
+        ));
       }
-      // emit(AuthenticationLoadingState(isLoading: false));
     });
 
     on<SendEmailVerification>((event, emit) async {
-      try {
-        emit(AuthenticationLoadingState(isLoading: true));
-        await provider.sendEmailVerification();
-
-        emit(const AuthenticationNeedsVerificationState());
-      } on TooManyRequestsAuthException {
-        emit(const AuthenticationFailureState('Too Many Requests'));
-      } on GenericAuthException {
-        emit(const AuthenticationFailureState('An Error Occurred'));
-      } finally {}
+      await provider.sendEmailVerification();
+      emit(state);
     });
   }
 }

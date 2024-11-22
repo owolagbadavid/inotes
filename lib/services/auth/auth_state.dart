@@ -1,40 +1,59 @@
 part of 'auth_service.dart';
 
 abstract class AuthenticationState {
-  const AuthenticationState();
+  final bool isLoading;
+  final String loadingText;
+
+  const AuthenticationState({
+    required this.isLoading,
+    this.loadingText = 'Please wait a moment',
+  });
 
   List<Object?> get props => [];
 }
 
-class AuthenticationInitialState extends AuthenticationState {}
+class AuthenticationInitialState extends AuthenticationState {
+  const AuthenticationInitialState({required super.isLoading});
+}
 
-class AuthenticationLoadingState extends AuthenticationState {
-  final bool isLoading;
+class AuthStateRegistering extends AuthenticationState {
+  final Exception? exception;
+  // final bool isLoading;
 
-  AuthenticationLoadingState({required this.isLoading});
+  const AuthStateRegistering({
+    // required this.isLoading,
+    this.exception,
+    required super.isLoading,
+  });
 }
 
 class AuthenticationSuccessState extends AuthenticationState {
   final AuthUser? user;
 
-  const AuthenticationSuccessState(this.user);
+  const AuthenticationSuccessState(this.user, {required super.isLoading});
   @override
   List<Object?> get props => [user];
 }
 
-class AuthenticationFailureState extends AuthenticationState {
-  final String errorMessage;
-
-  const AuthenticationFailureState(this.errorMessage);
-
-  @override
-  List<Object> get props => [errorMessage];
-}
+//
 
 class AuthenticationNeedsVerificationState extends AuthenticationState {
-  const AuthenticationNeedsVerificationState();
+  const AuthenticationNeedsVerificationState({required super.isLoading});
 }
 
-class AuthLoggedOutState extends AuthenticationState {}
+class AuthLoggedOutState extends AuthenticationState with EquatableMixin {
+  final Exception? exception;
 
-class LogoutConfirmationState extends AuthenticationState {}
+  const AuthLoggedOutState({
+    required super.isLoading,
+    this.exception,
+    super.loadingText,
+  });
+
+  @override
+  List<Object?> get props => [isLoading, exception];
+}
+
+class AuthStateShouldRegister extends AuthenticationState {
+  AuthStateShouldRegister({required super.isLoading});
+}
