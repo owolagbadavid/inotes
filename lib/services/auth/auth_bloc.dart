@@ -21,6 +21,7 @@ class AuthenticationBloc
     });
 
     on<SignUpUser>((event, emit) async {
+      emit(const AuthStateRegistering(isLoading: true));
       try {
         await provider.createUser(
           email: event.email,
@@ -71,8 +72,44 @@ class AuthenticationBloc
     });
 
     on<SendEmailVerification>((event, emit) async {
-      await provider.sendEmailVerification();
-      emit(state);
+      emit(const AuthenticationNeedsVerificationState(isLoading: true));
+      try {
+        await provider.sendEmailVerification();
+        emit(const AuthenticationNeedsVerificationState(isLoading: false));
+      } on Exception catch (_) {
+        emit(const AuthenticationNeedsVerificationState(isLoading: false));
+      }
+    });
+
+    on<AuthEventForgotPassword>((event, emit) async {
+      emit(AuthStateForgotPassword(isLoading: true));
+
+      final email = event.email;
+
+      if (email == null) {
+        return emit(AuthStateForgotPassword(isLoading: false));
+      }
+
+      bool? didSendEmail;
+      Exception? exception;
+      try {
+        await provider.sendPasswordResetEmail(email: email);
+        didSendEmail = true;
+        exception = null;
+      } on Exception catch (e) {
+        didSendEmail = false;
+        exception = e;
+      }
+
+      emit(AuthStateForgotPassword(
+        isLoading: false,
+        exception: exception,
+        hasSentEmail: didSendEmail,
+      ));
+    });
+
+    on<AuthEventShouldRegister>((event, emit) {
+      emit(const AuthStateRegistering(isLoading: false));
     });
   }
 }

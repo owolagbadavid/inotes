@@ -54,6 +54,17 @@ class AuthLoggedOutState extends AuthenticationState with EquatableMixin {
   List<Object?> get props => [isLoading, exception];
 }
 
-class AuthStateShouldRegister extends AuthenticationState {
-  AuthStateShouldRegister({required super.isLoading});
+// class AuthStateShouldRegister extends AuthenticationState {
+//   AuthStateShouldRegister({required super.isLoading});
+// }
+
+class AuthStateForgotPassword extends AuthenticationState {
+  final Exception? exception;
+  bool hasSentEmail = false;
+  AuthStateForgotPassword({
+    required super.isLoading,
+    super.loadingText,
+    this.exception,
+    this.hasSentEmail = false,
+  });
 }

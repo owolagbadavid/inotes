@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:inotes/services/cloud/cloud_note.dart';
 import 'package:inotes/services/cloud/firebase_cloud_storage.dart';
-import 'package:inotes/utils/dialogs/error_dialog.dart';
+// import 'package:inotes/utils/dialogs/error_dialog.dart';
 import 'package:inotes/utils/dialogs/logout_dialog.dart';
 import 'package:inotes/views/notes/notes_list_view.dart';
 

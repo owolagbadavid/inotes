@@ -99,6 +99,7 @@ class _RegisterViewState extends State<RegisterView> {
                         TextField(
                           controller: _email,
                           keyboardType: TextInputType.emailAddress,
+                          autofocus: true,
                           decoration: InputDecoration(
                             hintText: 'Enter Email',
                             filled: true,
@@ -150,9 +151,10 @@ class _RegisterViewState extends State<RegisterView> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          child: const Text(
+                          child: Text(
                             'Register',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary),
                           ),
                         ),
                         const SizedBox(height: 10),

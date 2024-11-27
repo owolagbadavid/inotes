@@ -95,6 +95,7 @@ class _LoginViewState extends State<LoginView> {
                         TextField(
                           controller: _email,
                           keyboardType: TextInputType.emailAddress,
+                          autofocus: true,
                           decoration: InputDecoration(
                             hintText: 'Enter Email',
                             filled: true,
@@ -148,9 +149,10 @@ class _LoginViewState extends State<LoginView> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          child: const Text(
+                          child: Text(
                             'Login',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.onPrimary),
                           ),
                           //state is AuthenticationLoadingState &&
                           //         state.isLoading
@@ -164,7 +166,14 @@ class _LoginViewState extends State<LoginView> {
                           //       )
                           //     :
                         ),
-                        const SizedBox(height: 10),
+                        // const SizedBox(height: 10),
+                        TextButton(
+                          onPressed: () => {
+                            BlocProvider.of<AuthenticationBloc>(context)
+                                .add(const AuthEventForgotPassword())
+                          },
+                          child: const Text('Forgot Password?'),
+                        ),
                         TextButton(
                           onPressed: () => {
                             BlocProvider.of<AuthenticationBloc>(context)

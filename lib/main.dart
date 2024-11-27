@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inotes/helpers/loading/loading_screen.dart';
 import 'package:inotes/styles/styles.dart';
+import 'package:inotes/views/forgot_password_view.dart';
 import 'package:inotes/views/login_view.dart';
 import 'package:inotes/views/register_view.dart';
 import 'package:inotes/views/verify_email_view.dart';
@@ -62,6 +63,8 @@ class HomePage extends StatelessWidget {
         return const NotesView();
       } else if (state is AuthenticationNeedsVerificationState) {
         return const VerfyEmailView();
+      } else if (state is AuthStateForgotPassword) {
+        return const ForgotPasswordView();
       } else if (state is AuthStateRegistering) {
         return const RegisterView();
       } else {

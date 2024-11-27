@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inotes/services/auth/auth_service.dart';
+import 'package:inotes/utils/dialogs/error_dialog.dart';
+import 'package:inotes/utils/dialogs/password_reset_email_sent_dialog.dart';
+
+class ForgotPasswordView extends StatefulWidget {
+  const ForgotPasswordView({super.key});
+
+  @override
+  State<ForgotPasswordView> createState() => _ForgotPasswordViewState();
+}
+
+class _ForgotPasswordViewState extends State<ForgotPasswordView> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    _controller = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<AuthenticationBloc, AuthenticationState>(
+      listener: (context, state) async {
+        if (state is AuthStateForgotPassword) {
+          if (state.hasSentEmail) {
+            _controller.clear();
+            await showPasswordResetEmailSentDialog(context);
+          } else if (state.exception != null) {
+            await showErrorDialog(context, 'We could not send the email');
+          }
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Forgot Password')),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: <Widget>[
+              TextField(
+                controller: _controller,
+                autocorrect: false,
+                autofocus: true,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  hintText: 'Enter your email',
+                ),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                style: TextButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Text(
+                  'Send Email',
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+                ),
+                onPressed: () {
+                  final email = _controller.text;
+                  context
+                      .read<AuthenticationBloc>()
+                      .add(AuthEventForgotPassword(email: email));
+                },
+              ),
+              TextButton(
+                onPressed: () {
+                  BlocProvider.of<AuthenticationBloc>(context).add(SignOut());
+                },
+                child: const Text('Back to login'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
