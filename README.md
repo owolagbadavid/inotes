@@ -4,12 +4,47 @@
 
 ### APK
 
-[![1](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732891988/inotes/apk/1_vbtpcm.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/1_vbtpcm.png) [![2](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732891988/inotes/apk/2_o6tmci.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/2_o6tmci.png)  [![3](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732891988/inotes/apk/3_kilyrj.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/3_kilyrj.png) [![4](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732891989/inotes/apk/5_hfg3xe.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891989/inotes/apk/5_hfg3xe.png) [![5](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732891988/inotes/apk/4_vk32ur.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/4_vk32ur.png) [![6](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732891989/inotes/apk/6_yor5nu.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891989/inotes/apk/6_yor5nu.png)
-
+<a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/1_vbtpcm.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/1_vbtpcm.png" width="50" height="100" alt="APK Image 1">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/2_o6tmci.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/2_o6tmci.png" width="50" height="100" alt="APK Image 2">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/3_kilyrj.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/3_kilyrj.png" width="50" height="100" alt="APK Image 3">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891989/inotes/apk/5_hfg3xe.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891989/inotes/apk/5_hfg3xe.png" width="50" height="100" alt="APK Image 4">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/4_vk32ur.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891988/inotes/apk/4_vk32ur.png" width="50" height="100" alt="APK Image 5">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891989/inotes/apk/6_yor5nu.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732891989/inotes/apk/6_yor5nu.png" width="50" height="100" alt="APK Image 6">
+    </a>
 
 ### IOS
-[![1](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732890742/inotes/ios/1_lxsdgd.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890742/inotes/ios/1_lxsdgd.png) [![3](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732890731/inotes/ios/3_ywftle.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/3_ywftle.png) [![2](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732890731/inotes/ios/2_wrumg9.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/2_wrumg9.png)  [![4](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732890731/inotes/ios/4_ptsoep.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/4_ptsoep.png) [![5](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732890731/inotes/ios/5_k6vemu.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/5_k6vemu.png) [![6](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732890732/inotes/ios/6_k63fuu.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890732/inotes/ios/6_k63fuu.png)  [![7](https://res.cloudinary.com/dfpby8w8f/image/upload/w_50,h_100/v1732890733/inotes/ios/7_lopmo8.png)](https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890733/inotes/ios/7_lopmo8.png) 
-
+<a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890742/inotes/ios/1_lxsdgd.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890742/inotes/ios/1_lxsdgd.png" width="50" height="100" alt="IOS Image 1">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/3_ywftle.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/3_ywftle.png" width="50" height="100" alt="IOS Image 2">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/2_wrumg9.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/2_wrumg9.png" width="50" height="100" alt="IOS Image 3">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/4_ptsoep.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/4_ptsoep.png" width="50" height="100" alt="IOS Image 4">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/5_k6vemu.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890731/inotes/ios/5_k6vemu.png" width="50" height="100" alt="IOS Image 5">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890732/inotes/ios/6_k63fuu.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890732/inotes/ios/6_k63fuu.png" width="50" height="100" alt="IOS Image 6">
+    </a>&nbsp;
+    <a href="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890733/inotes/ios/7_lopmo8.png">
+        <img src="https://res.cloudinary.com/dfpby8w8f/image/upload/v1732890733/inotes/ios/7_lopmo8.png" width="50" height="100" alt="IOS Image 7">
+    </a>
 
 
 
