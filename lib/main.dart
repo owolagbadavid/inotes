@@ -18,7 +18,8 @@ void main() async {
 
   runApp(
     MaterialApp(
-      title: 'Flutter Demo',
+      title: 'iNotes',
+      debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system, //

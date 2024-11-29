@@ -47,8 +47,8 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCUDQUU252HIvRD8Ux-m_WfMlja_XA988U',
-    appId: '1:782909183220:web:83353fb6e760d68aa2baa1',
+    apiKey: String.fromEnvironment('WEB_API_KEY'),
+    appId: String.fromEnvironment('WEB_APP_ID'),
     messagingSenderId: '782909183220',
     projectId: 'init-s-notes',
     authDomain: 'init-s-notes.firebaseapp.com',
@@ -57,16 +57,16 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA1i8T400-TOkgMa1dY3J-cN7qOhFojjhs',
-    appId: '1:782909183220:android:582fdc3add4111c4a2baa1',
+    apiKey: String.fromEnvironment('APK_API_KEY'),
+    appId: String.fromEnvironment('APK_APP_ID'),
     messagingSenderId: '782909183220',
     projectId: 'init-s-notes',
     storageBucket: 'init-s-notes.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAHlThEKni-7AzeHhbADX83kq_nsUv3pgM',
-    appId: '1:782909183220:ios:92cf0ac938ace5c2a2baa1',
+    apiKey: String.fromEnvironment('IOS_API_KEY'),
+    appId: String.fromEnvironment('IOS_APP_ID'),
     messagingSenderId: '782909183220',
     projectId: 'init-s-notes',
     storageBucket: 'init-s-notes.appspot.com',
