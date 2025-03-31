@@ -10,6 +10,7 @@ import 'package:inotes/views/notes/notes_view.dart';
 import 'package:inotes/services/auth/auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inotes/views/notes/create_update_note_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // import 'dart:developer' as dev show log;
 
@@ -18,6 +19,8 @@ void main() async {
 
   runApp(
     MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       title: 'iNotes',
       debugShowCheckedModeBanner: false,
       theme: lightTheme,

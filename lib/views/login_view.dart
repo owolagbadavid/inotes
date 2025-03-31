@@ -2,10 +2,12 @@
 import 'dart:developer' as dev show log;
 
 import 'package:flutter/material.dart';
+import 'package:inotes/extensions/buildcontext/loc.dart';
 // import 'package:inotes/constants/routes.dart';
 import 'package:inotes/services/auth/auth_service.dart';
 import 'package:inotes/utils/dialogs/error_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -51,9 +53,9 @@ class _LoginViewState extends State<LoginView> {
       },
       child: Scaffold(
         // appBar: AppBar(
-        //   title: const Text(
-        //     "Login",
-        //   ),
+        //   title: Text(
+        //       AppLocalizations.of(context)!.my_title // Use the localized string
+        //       ),
         // ),
         body: LayoutBuilder(builder: (context, constraints) {
           double maxWidth = constraints.maxWidth < 600
@@ -151,7 +153,7 @@ class _LoginViewState extends State<LoginView> {
                               ),
                             ),
                             child: Text(
-                              'Login',
+                              context.loc.login,
                               style: TextStyle(
                                   color:
                                       Theme.of(context).colorScheme.onPrimary),

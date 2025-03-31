@@ -1,0 +1,13 @@
+{
+    "my_title": "Goes here (SWE)",
+    "login": "Logga in",
+     "notes_title": "{count, plural, =0{No notes} =1{1 note} other{{count} notes}}",
+    "@notes_title": {
+        "placeholders": {
+            "count": {
+                "type": "int",
+                "example": "5 notes"
+            }
+        }
+    }
+}
